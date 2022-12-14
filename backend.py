@@ -1,37 +1,9 @@
 
-from pymongo import MongoClient
-
-
-
-
+#from pymongo import MongoClient
+import pymongo
 #################################################################
 
 # Team 1
-
-import scrapy
-
-class BlogSpider(scrapy.Spider):
-    name = 'blogspider'
-    start_urls = ['https://www.cybertek.fr']
-
-    def parse(self, response):
-        for title in response.css('.oxy-post-title'):
-            yield {'title': title.css('::text').get()}
-
-        for next_page in response.css('a.next'):
-            yield response.follow(next_page, self.parse)
-
-
-
-
-
-
-
-
-
-
-
-
 
 #################################################################
 
@@ -64,6 +36,23 @@ data = [{
 
 # print(data)
 
-client = MongoClient("mongodb://127.0.0.1:27018/");
+#client = MongoClient("mongodb://127.0.0.1:27018/")
 
-print(mydb);
+myclient = pymongo.MongoClient("mongodb://127.0.0.1:27018/")
+
+mydb = myclient["projet-mongo"]
+
+mycol = mydb["customers"]
+
+mydict = { "name": "John", "address": "Highway 37" }
+
+x = mycol.insert_one(mydict)
+
+
+print(mydb)
+
+print(myclient.list_database_names())
+
+dblist = myclient.list_database_names()
+if "projet-mongo" in dblist:
+  print("The database exists.")
