@@ -36,6 +36,5 @@ data = [{
 
 # print(data)
 
-client = MongoClient("mongodb://127.0.0.1:27018/");
-
-print(mydb);
+client = MongoClient("mongodb://127.0.0.1:27018/")
+print(client.list_database_names())
