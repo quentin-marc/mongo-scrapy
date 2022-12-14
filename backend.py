@@ -1,4 +1,5 @@
 
+from pymongo import MongoClient
 
 #################################################################
 
@@ -33,4 +34,8 @@ data = [{
     'chipSet' : "GF RTX"
 }]
 
-print(data)
+# print(data)
+
+client = MongoClient("mongodb://127.0.0.1:27018/");
+
+print(mydb);
