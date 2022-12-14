@@ -1,9 +1,26 @@
 
-#from pymongo import MongoClient
-import pymongo
+from pymongo import MongoClient
+
 #################################################################
 
 # Team 1
+
+
+# import scrapy
+
+# class BlogSpider(scrapy.Spider):
+#     name = 'blogspider'
+#     start_urls = ['https://www.cybertek.fr']
+
+#     def parse(self, response):
+#         for title in response.css('.oxy-post-title'):
+#             yield {'title': title.css('::text').get()}
+
+#         for next_page in response.css('a.next'):
+#             yield response.follow(next_page, self.parse)
+
+
+
 
 #################################################################
 
@@ -36,23 +53,17 @@ data = [{
 
 # print(data)
 
-#client = MongoClient("mongodb://127.0.0.1:27018/")
+# database connection
+client = MongoClient("mongodb://127.0.0.1:27018/")
 
-myclient = pymongo.MongoClient("mongodb://127.0.0.1:27018/")
+mydb = client["scrapy-database"]
 
-mydb = myclient["projet-mongo"]
+# get collection
+db_collection = mydb['computers']
 
-mycol = mydb["customers"]
+# insert new computers inside tthe collection
+inserted = db_collection.insert_many(data)
 
-mydict = { "name": "John", "address": "Highway 37" }
+# print the result
+print(str(len(inserted.inserted_ids)) + " documents inserted")
 
-x = mycol.insert_one(mydict)
-
-
-print(mydb)
-
-print(myclient.list_database_names())
-
-dblist = myclient.list_database_names()
-if "projet-mongo" in dblist:
-  print("The database exists.")
