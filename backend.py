@@ -8,28 +8,18 @@ from pymongo import MongoClient
 
 # Team 1
 
-import scrapy
+# import scrapy
 
-class BlogSpider(scrapy.Spider):
-    name = 'blogspider'
-    start_urls = ['https://www.cybertek.fr']
+# class BlogSpider(scrapy.Spider):
+#     name = 'blogspider'
+#     start_urls = ['https://www.cybertek.fr']
 
-    def parse(self, response):
-        for title in response.css('.oxy-post-title'):
-            yield {'title': title.css('::text').get()}
+#     def parse(self, response):
+#         for title in response.css('.oxy-post-title'):
+#             yield {'title': title.css('::text').get()}
 
-        for next_page in response.css('a.next'):
-            yield response.follow(next_page, self.parse)
-
-
-
-
-
-
-
-
-
-
+#         for next_page in response.css('a.next'):
+#             yield response.follow(next_page, self.parse)
 
 
 
@@ -64,5 +54,16 @@ data = [{
 
 # print(data)
 
+# database connection
 client = MongoClient("mongodb://127.0.0.1:27018/")
-print(client.list_database_names())
+
+mydb = client["scrapy-database"]
+
+# get collection
+db_collection = mydb['computers']
+
+# insert new computers inside tthe collection
+inserted = db_collection.insert_many(data)
+
+# print the result
+print(str(len(inserted.inserted_ids)) + " documents inserted")
