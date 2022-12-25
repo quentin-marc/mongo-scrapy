@@ -1,0 +1,52 @@
+body{
+    width: 1200px;
+    margin: 100px auto;
+}
+
+.container{
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.tale{
+    width: 21%;
+    min-height: 400px;
+    margin: 30px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px rgb(104 104 104);
+    padding: 30px;
+}
+
+.picture{
+    width: 100%;
+    height: 200px;
+    background-image: url("https://books.toscrape.com/media/cache/77/0b/770bf7bcb38eaacc6a9392dd0b7af1e4.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.otherInformations{
+    display: flex;
+    margin-top: 10px;
+}
+
+.otherInformations .retail{
+    flex: 1;
+    font-size: 15px;
+}
+
+.resume{
+    margin-top: 15px;
+    text-align: justify;
+}
