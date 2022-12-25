@@ -30,6 +30,3 @@ class CrawlingSpider(CrawlSpider):
         # key = {'title': livre.title}
         key = {'title':livre["title"]}
         inserted = db_collection.update_one(key, {"$set": livre}, upsert=True)
-
-        
-    
